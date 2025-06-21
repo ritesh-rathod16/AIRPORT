@@ -1,70 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Visual of Ghoti, Maharashtra</title>
+    <title>3D Street View of Ghoti, Maharashtra</title>
     <style>
-        body { margin: 0; overflow: hidden; }
-        canvas { display: block; }
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+        }
+        h1 {
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+        .map-container {
+            margin: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
-    <script>
-        // Scene setup
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
-
-        // Add lights
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-        scene.add(ambientLight);
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-        directionalLight.position.set(1, 1, 1);
-        scene.add(directionalLight);
-
-        // Add a simple terrain (placeholder for Ghoti)
-        const geometry = new THREE.PlaneGeometry(20, 20, 100, 100);
-        const material = new THREE.MeshStandardMaterial({ 
-            color: 0x4d8c40, 
-            wireframe: false,
-            side: THREE.DoubleSide 
-        });
-        const terrain = new THREE.Mesh(geometry, material);
-        terrain.rotation.x = -Math.PI / 2;
-        scene.add(terrain);
-
-        // Add a marker for Ghoti (coordinates: 20.8970835, 79.0564438)
-        const markerGeometry = new THREE.SphereGeometry(0.3, 16, 16);
-        const markerMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-        const marker = new THREE.Mesh(markerGeometry, markerMaterial);
-        marker.position.set(0, 0.5, 0); // Adjust position as needed
-        scene.add(marker);
-
-        // Camera and controls
-        camera.position.set(10, 10, 10);
-        const controls = new THREE.OrbitControls(camera, renderer.domElement);
-        controls.enableDamping = true;
-        controls.dampingFactor = 0.05;
-
-        // Animation loop
-        function animate() {
-            requestAnimationFrame(animate);
-            controls.update();
-            renderer.render(scene, camera);
-        }
-        animate();
-
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-    </script>
+    <div class="container">
+        <h1>Ghoti, Maharashtra - 3D Street View</h1>
+        <div class="map-container">
+            <!-- Your provided iframe with responsive sizing -->
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!3m2!1sen!2sin!4v1750505323910!5m2!1sen!2sin!6m8!1m7!1sAEeQDw5qqtPjML4Y_TLM2A!2m2!1d20.89708350185786!2d79.05644383339965!3f137.0348096970415!4f-17.826595044079824!5f0.7820865974627469" 
+                width="1000" 
+                height="800" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>
 </body>
 </html>
