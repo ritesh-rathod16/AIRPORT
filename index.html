@@ -3,558 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skyport International Airport</title>
+    <title>3D Visual of Ghoti, Maharashtra</title>
     <style>
-        /* CSS Styles */
-        :root {
-            --primary: #005f87;
-            --secondary: #ff5722;
-            --light: #f4f4f4;
-            --dark: #333;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #f9f9f9;
-            color: var(--dark);
-            line-height: 1.6;
-        }
-        
-        header {
-            background-color: var(--primary);
-            color: white;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 1.5rem;
-        }
-        
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        
-        .hero {
-            background: url('https://via.placeholder.com/1920x600') no-repeat center center/cover;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            padding: 2rem;
-        }
-        
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: var(--primary);
-        }
-        
-        .flight-search {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-bottom: 3rem;
-        }
-        
-        .search-tabs {
-            display: flex;
-            margin-bottom: 1.5rem;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        .tab {
-            padding: 0.75rem 1.5rem;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-        }
-        
-        .tab.active {
-            border-bottom: 3px solid var(--primary);
-            font-weight: bold;
-        }
-        
-        .search-form {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-        
-        .form-group {
-            margin-bottom: 1rem;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-        
-        input, select {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        
-        button {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-        
-        button:hover {
-            background-color: #004a6a;
-        }
-        
-        .flight-status {
-            margin-bottom: 3rem;
-        }
-        
-        .status-tabs {
-            display: flex;
-            margin-bottom: 1rem;
-        }
-        
-        .status-tab {
-            padding: 0.5rem 1rem;
-            margin-right: 0.5rem;
-            cursor: pointer;
-            background: #eee;
-            border-radius: 4px 4px 0 0;
-        }
-        
-        .status-tab.active {
-            background: var(--primary);
-            color: white;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        th, td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        th {
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-        
-        .status {
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 0.8rem;
-        }
-        
-        .status.on-time {
-            background-color: #e6f7e6;
-            color: #2e7d32;
-        }
-        
-        .status.delayed {
-            background-color: #fff3e0;
-            color: #e65100;
-        }
-        
-        .status.cancelled {
-            background-color: #ffebee;
-            color: #c62828;
-        }
-        
-        .services {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-        
-        .service-card {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .service-img {
-            height: 150px;
-            background: #eee;
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .service-content {
-            padding: 1.5rem;
-        }
-        
-        .service-content h3 {
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-        
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto 2rem;
-            text-align: left;
-        }
-        
-        .footer-column h3 {
-            margin-bottom: 1rem;
-            color: var(--secondary);
-        }
-        
-        .footer-column ul {
-            list-style: none;
-        }
-        
-        .footer-column ul li {
-            margin-bottom: 0.5rem;
-        }
-        
-        .footer-column ul li a {
-            color: #ccc;
-            text-decoration: none;
-        }
-        
-        .footer-column ul li a:hover {
-            color: white;
-        }
-        
-        .copyright {
-            border-top: 1px solid #444;
-            padding-top: 1.5rem;
-            color: #aaa;
-        }
-        
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                padding: 1rem;
-            }
-            
-            .logo {
-                margin-bottom: 1rem;
-            }
-            
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            nav ul li {
-                margin: 0.5rem;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-        }
+        body { margin: 0; overflow: hidden; }
+        canvas { display: block; }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">Skyport International</div>
-        <nav>
-            <ul>
-                <li><a href="#flights">Flights</a></li>
-                <li><a href="#maps">Maps</a></li>
-                <li><a href="#transport">Transport</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Welcome to Skyport International</h1>
-            <p>Your gateway to the world with state-of-the-art facilities and exceptional service</p>
-        </div>
-    </section>
-
-    <div class="container">
-        <section id="flights" class="flight-search">
-            <h2 class="section-title">Flight Information</h2>
-            <div class="search-tabs">
-                <div class="tab active">Flight Status</div>
-                <div class="tab">Book a Flight</div>
-                <div class="tab">Check-in</div>
-            </div>
-            
-            <div class="search-form">
-                <div class="form-group">
-                    <label for="flight-number">Flight Number</label>
-                    <input type="text" id="flight-number" placeholder="e.g. SKY123">
-                </div>
-                <div class="form-group">
-                    <label for="airline">Airline</label>
-                    <select id="airline">
-                        <option value="">All Airlines</option>
-                        <option value="skyair">SkyAir</option>
-                        <option value="global">Global Airways</option>
-                        <option value="oceanic">Oceanic Airlines</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="date">Date</label>
-                    <input type="date" id="date">
-                </div>
-                <div class="form-group">
-                    <button id="search-flights">Search Flights</button>
-                </div>
-            </div>
-        </section>
-
-        <section class="flight-status">
-            <div class="status-tabs">
-                <div class="status-tab active" data-status="arrivals">Arrivals</div>
-                <div class="status-tab" data-status="departures">Departures</div>
-            </div>
-            
-            <div class="table-container">
-                <table id="flight-table">
-                    <thead>
-                        <tr>
-                            <th>Time</th>
-                            <th>Flight</th>
-                            <th>Airline</th>
-                            <th>Destination</th>
-                            <th>Gate</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody id="flight-data">
-                        <!-- Flight data will be inserted here by JavaScript -->
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <section id="services" class="services">
-            <h2 class="section-title">Airport Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-img" style="background-image: url('https://via.placeholder.com/400x300');"></div>
-                    <div class="service-content">
-                        <h3>Lounges</h3>
-                        <p>Relax in our premium lounges with complimentary food, drinks, and WiFi.</p>
-                        <button>Learn More</button>
-                    </div>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-img" style="background-image: url('https://via.placeholder.com/400x300');"></div>
-                    <div class="service-content">
-                        <h3>Dining & Shopping</h3>
-                        <p>Explore our wide range of restaurants and duty-free shopping options.</p>
-                        <button>Learn More</button>
-                    </div>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-img" style="background-image: url('https://via.placeholder.com/400x300');"></div>
-                    <div class="service-content">
-                        <h3>Special Assistance</h3>
-                        <p>We provide services for passengers with reduced mobility or special needs.</p>
-                        <button>Learn More</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#flights">Flight Status</a></li>
-                    <li><a href="#maps">Terminal Maps</a></li>
-                    <li><a href="#transport">Transportation</a></li>
-                    <li><a href="#services">Airport Services</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Information</h3>
-                <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">News & Updates</a></li>
-                    <li><a href="#">Sustainability</a></li>
-                    <li><a href="#">Careers</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Contact</h3>
-                <ul>
-                    <li>Customer Service: +1 (555) 123-4567</li>
-                    <li>Email: info@skyport.com</li>
-                    <li>Address: 123 Airport Way, Skyport City</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="copyright">
-            <p>&copy; 2023 Skyport International Airport. All rights reserved.</p>
-        </div>
-    </footer>
-
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
     <script>
-        // JavaScript for interactive elements
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mock flight data
-            const flights = {
-                arrivals: [
-                    { time: '08:45', flight: 'SKY456', airline: 'SkyAir', destination: 'New York (JFK)', gate: 'B12', status: 'Landed' },
-                    { time: '09:20', flight: 'GLB789', airline: 'Global Airways', destination: 'London (LHR)', gate: 'A05', status: 'Delayed', statusClass: 'delayed' },
-                    { time: '10:15', flight: 'OCN234', airline: 'Oceanic Airlines', destination: 'Tokyo (HND)', gate: 'C08', status: 'On Time', statusClass: 'on-time' },
-                    { time: '11:30', flight: 'SKY901', airline: 'SkyAir', destination: 'Dubai (DXB)', gate: 'B15', status: 'Landed' },
-                    { time: '12:45', flight: 'GLB567', airline: 'Global Airways', destination: 'Paris (CDG)', gate: 'A12', status: 'Cancelled', statusClass: 'cancelled' }
-                ],
-                departures: [
-                    { time: '09:15', flight: 'SKY123', airline: 'SkyAir', destination: 'Los Angeles (LAX)', gate: 'A03', status: 'Boarding', statusClass: 'on-time' },
-                    { time: '10:30', flight: 'GLB890', airline: 'Global Airways', destination: 'Frankfurt (FRA)', gate: 'B07', status: 'On Time', statusClass: 'on-time' },
-                    { time: '11:45', flight: 'OCN345', airline: 'Oceanic Airlines', destination: 'Sydney (SYD)', gate: 'C12', status: 'Delayed', statusClass: 'delayed' },
-                    { time: '13:00', flight: 'SKY678', airline: 'SkyAir', destination: 'Singapore (SIN)', gate: 'A08', status: 'On Time', statusClass: 'on-time' },
-                    { time: '14:20', flight: 'GLB123', airline: 'Global Airways', destination: 'Toronto (YYZ)', gate: 'B05', status: 'Gate Closed' }
-                ]
-            };
+        // Scene setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
 
-            // Function to render flight data
-            function renderFlights(status) {
-                const flightData = flights[status];
-                const tableBody = document.getElementById('flight-data');
-                tableBody.innerHTML = '';
+        // Add lights
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        scene.add(ambientLight);
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        directionalLight.position.set(1, 1, 1);
+        scene.add(directionalLight);
 
-                flightData.forEach(flight => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${flight.time}</td>
-                        <td>${flight.flight}</td>
-                        <td>${flight.airline}</td>
-                        <td>${flight.destination}</td>
-                        <td>${flight.gate}</td>
-                        <td><span class="status ${flight.statusClass || ''}">${flight.status}</span></td>
-                    `;
-                    tableBody.appendChild(row);
-                });
-            }
+        // Add a simple terrain (placeholder for Ghoti)
+        const geometry = new THREE.PlaneGeometry(20, 20, 100, 100);
+        const material = new THREE.MeshStandardMaterial({ 
+            color: 0x4d8c40, 
+            wireframe: false,
+            side: THREE.DoubleSide 
+        });
+        const terrain = new THREE.Mesh(geometry, material);
+        terrain.rotation.x = -Math.PI / 2;
+        scene.add(terrain);
 
-            // Initial render
-            renderFlights('arrivals');
+        // Add a marker for Ghoti (coordinates: 20.8970835, 79.0564438)
+        const markerGeometry = new THREE.SphereGeometry(0.3, 16, 16);
+        const markerMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+        const marker = new THREE.Mesh(markerGeometry, markerMaterial);
+        marker.position.set(0, 0.5, 0); // Adjust position as needed
+        scene.add(marker);
 
-            // Tab switching
-            const statusTabs = document.querySelectorAll('.status-tab');
-            statusTabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    statusTabs.forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                    renderFlights(this.dataset.status);
-                });
-            });
+        // Camera and controls
+        camera.position.set(10, 10, 10);
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
 
-            // Search functionality
-            document.getElementById('search-flights').addEventListener('click', function() {
-                const flightNumber = document.getElementById('flight-number').value;
-                const airline = document.getElementById('airline').value;
-                const date = document.getElementById('date').value;
-                
-                // In a real app, this would call an API
-                alert(`Searching for flights:\nFlight Number: ${flightNumber}\nAirline: ${airline}\nDate: ${date}`);
-            });
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+        }
+        animate();
 
-            // Tab switching for flight search
-            const tabs = document.querySelectorAll('.tab');
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    tabs.forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
         });
     </script>
 </body>
